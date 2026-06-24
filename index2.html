@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flipkart Clone</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f1f3f6;
+}
+
+header{
+background:#2874f0;
+color:white;
+padding:15px 40px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+position:sticky;
+top:0;
+}
+
+.logo{
+font-size:28px;
+font-weight:bold;
+}
+
+.search-box{
+display:flex;
+width:45%;
+}
+
+.search-box input{
+width:100%;
+padding:10px;
+border:none;
+outline:none;
+}
+
+.search-box button{
+padding:10px 20px;
+border:none;
+background:orange;
+cursor:pointer;
+}
+
+.cart{
+font-size:20px;
+font-weight:bold;
+}
+
+.banner{
+width:100%;
+height:250px;
+background:url("https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=1200") center/cover;
+display:flex;
+justify-content:center;
+align-items:center;
+color:white;
+font-size:40px;
+font-weight:bold;
+}
+
+.products{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+padding:30px;
+}
+
+.card{
+background:white;
+padding:15px;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,.15);
+text-align:center;
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-8px);
+}
+
+.card img{
+width:180px;
+height:180px;
+object-fit:cover;
+}
+
+.card h3{
+margin:10px 0;
+}
+
+.price{
+font-size:20px;
+color:green;
+margin-bottom:10px;
+}
+
+button{
+background:#2874f0;
+color:white;
+border:none;
+padding:10px 18px;
+cursor:pointer;
+border-radius:5px;
+}
+
+button:hover{
+background:#0d5cd6;
+}
+
+footer{
+background:#172337;
+color:white;
+text-align:center;
+padding:20px;
+margin-top:30px;
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+<div class="logo">Flipkart</div>
+
+<div class="search-box">
+<input type="text" id="search" placeholder="Search products...">
+<button onclick="searchProduct()">Search</button>
+</div>
+
+<div class="cart">
+🛒 Cart:
+<span id="count">0</span>
+</div>
+
+</header>
+
+<div class="banner">
+Big Billion Sale
+</div>
+
+<div class="products" id="products">
+
+<div class="card">
+<img src="https://static8.depositphotos.com/1002575/1041/i/950/depositphotos_10411746-stock-photo-smartphone.jpg">
+<h3>Smart Phone</h3>
+<div class="price">₹19,999</div>
+<button onclick="addCart()">Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="https://img.magnific.com/premium-photo/laptop-mockup-office-table-product-photography-wallpaper_1230902-13099.jpg?w=2000">
+<h3>Laptop</h3>
+<div class="price">₹59,999</div>
+<button onclick="addCart()">Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="https://images.rawpixel.com/image_social_square/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTAzL3B4MTU5NTE5OS1pbWFnZS0wMS1qb2IxNzc1LWxmNjcxdmJ3LmpwZw.jpg">
+<h3>Headphones</h3>
+<div class="price">₹1,499</div>
+<button onclick="addCart()">Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="https://m.media-amazon.com/images/I/61ZjlBOp+rL._SL1500_.jpg">
+<h3>Smart Watch</h3>
+<div class="price">₹2,999</div>
+<button onclick="addCart()">Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="https://wallpapercave.com/wp/wp2896922.jpg">
+<h3>Shoes</h3>
+<div class="price">₹2,499</div>
+<button onclick="addCart()">Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="https://static.vecteezy.com/system/resources/thumbnails/028/252/048/small_2x/men-s-t-shirt-realistic-mockup-in-different-colors-ai-generated-photo.jpg">
+<h3>T-Shirt</h3>
+<div class="price">₹799</div>
+<button onclick="addCart()">Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="https://m.media-amazon.com/images/I/71NznE3KmKL._SL1500_.jpg">
+<h3>Bluetooth Speaker</h3>
+<div class="price">₹1,999</div>
+<button onclick="addCart()">Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="https://www.bhphotovideo.com/images/images2500x2500/canon_1263c005_eos_80d_dslr_camera_1225876.jpg">
+<h3>Camera</h3>
+<div class="price">₹39,999</div>
+<button onclick="addCart()">Add to Cart</button>
+</div>
+
+</div>
+
+<footer>
+© 2026 Flipkart Clone | Built with HTML, CSS & JavaScript
+</footer>
+
+<script>
+let cart=0;
+
+function addCart(){
+cart++;
+document.getElementById("count").innerHTML=cart;
+alert("Product Added to Cart");
+}
+
+function searchProduct(){
+
+let input=document.getElementById("search").value.toLowerCase();
+
+let cards=document.getElementsByClassName("card");
+
+for(let i=0;i<cards.length;i++){
+
+let title=cards[i].getElementsByTagName("h3")[0].innerText.toLowerCase();
+
+if(title.includes(input)){
+cards[i].style.display="block";
+}
+else{
+cards[i].style.display="none";
+}
+
+}
+
+}
+</script>
+
+</body>
+</html>
